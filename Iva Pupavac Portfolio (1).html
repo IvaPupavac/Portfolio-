@@ -1,0 +1,612 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Iva Pupavac Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a dark studio. Near-black violet ground, warm bone type, four accents that each belong to one project (coral, saffron, lilac, mint). Chapters swap with a coral curtain; content rises in on scroll; cards tilt toward the cursor. */
+:root{
+  --bg:#0F0E13; --bg-2:#16151C; --bg-3:#1E1C26; --line:rgba(243,239,231,.12);
+  --fg:#F3EFE7; --muted:#B4AEBF; --dim:#8A8496;
+  --coral:#FF6B4A; --saffron:#FFC53D; --lilac:#B9A6FF; --mint:#5CE1C4;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip;background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font:400 18px/1.65 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--coral);color:var(--bg)}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:4px;border-radius:4px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{margin:0;font-family:var(--display);font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 30,"WONK" 0;letter-spacing:-.025em;line-height:1;text-wrap:balance}
+em.w,.w{font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1}
+.mono{font:500 12.5px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.k-coral{color:var(--coral)}.k-saffron{color:var(--saffron)}.k-lilac{color:var(--lilac)}.k-mint{color:var(--mint)}
+/* glow that follows the cursor */
+.glow{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,74,.10),transparent 62%);pointer-events:none;z-index:0;transform:translate(var(--x,50vw),var(--y,30vh));transition:transform .25s ease-out}
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(15,14,19,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo b{width:36px;height:36px;border-radius:50%;background:var(--coral);color:var(--bg);display:grid;place-items:center;font:600 italic 18px/1 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1}
+.logo span{font:500 17px var(--sans)}
+.tabs{display:flex;gap:4px;background:var(--bg-2);border:1px solid var(--line);border-radius:99px;padding:4px}
+.tabs a{text-decoration:none;font:500 14.5px/1 var(--sans);padding:10px 16px;border-radius:99px;color:var(--muted);transition:color .2s,background .2s}
+.tabs a:hover{color:var(--fg)}
+.tabs a[aria-current="page"]{background:var(--fg);color:var(--bg)}
+.tabs a .n{font:500 11px var(--mono);opacity:.6;margin-right:6px}
+@media (max-width:820px){.top .wrap{flex-wrap:wrap}.logo span{display:none}.tabs{order:3;width:100%;justify-content:space-between}.tabs a{padding:10px 10px;font-size:13.5px}.tabs a .n{display:none}}
+.cv-top{font:600 14px/1 var(--sans);text-decoration:none;color:var(--bg);background:var(--saffron);padding:11px 16px;border-radius:99px;display:inline-flex;gap:8px;align-items:center}
+.cv-top:hover{background:var(--fg)}
+/* chapters + curtain */
+main{position:relative;z-index:1}
+.chapter{display:none}
+.chapter.on{display:block;animation:chIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes chIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.curtain{position:fixed;inset:0;z-index:40;background:var(--coral);transform:scaleY(0);transform-origin:bottom;pointer-events:none}
+.curtain.go{animation:cur .9s cubic-bezier(.7,0,.2,1) forwards}
+@keyframes cur{0%{transform:scaleY(0);transform-origin:bottom}45%{transform:scaleY(1);transform-origin:bottom}55%{transform:scaleY(1);transform-origin:top}100%{transform:scaleY(0);transform-origin:top}}
+.rv.pre{opacity:0;transform:translateY(28px)}
+.rv{transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+section{padding-block:clamp(70px,9vw,130px)}
+.chap-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:24px;align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+.chap-head .mono{color:var(--dim);display:block;margin-bottom:16px}
+.chap-head h2{font-size:clamp(56px,8.5vw,128px)}
+.chap-head p{margin:0;color:var(--muted);max-width:44ch}
+@media (max-width:820px){.chap-head{grid-template-columns:1fr}}
+/* hero background wall */
+.herobox{position:relative;overflow:hidden}
+.wall{position:absolute;inset:0;z-index:0;pointer-events:none;transition:translate .6s ease-out}
+.lamp{position:absolute;margin:0;opacity:0;transform:translateY(10px) scale(.98)}
+.lamp img{display:block;width:100%;border-radius:12px;background:var(--bg-3);box-shadow:0 30px 60px -24px rgba(0,0,0,.9),0 0 0 1px rgba(243,239,231,.06)}
+.lamp.p img{aspect-ratio:9/18;object-fit:cover;object-position:top}
+.lamp.l img{aspect-ratio:4/3;object-fit:cover;object-position:top}
+.lamp::after{content:"";position:absolute;inset:-18%;border-radius:40%;background:radial-gradient(closest-side,rgba(255,197,61,.22),transparent);opacity:0;z-index:-1}
+.lamp.on{animation:lightOn 1.1s steps(1,end) forwards,rise 1.4s cubic-bezier(.2,.8,.2,1) forwards}
+.lamp.on::after{animation:halo 1.6s ease-out forwards}
+.lamp.off{opacity:.62;animation:lightOff 1.4s ease-in forwards;transform:none}
+@keyframes lightOn{0%{opacity:0}8%{opacity:.5}14%{opacity:.05}22%{opacity:.6}28%{opacity:.15}40%{opacity:.62}100%{opacity:.62}}
+@keyframes rise{to{transform:none}}
+@keyframes halo{0%{opacity:0}40%{opacity:1}100%{opacity:.35}}
+@keyframes lightOff{0%{opacity:.62;filter:brightness(1)}20%{opacity:.7;filter:brightness(1.3)}100%{opacity:0;filter:brightness(.3)}}
+.lamp.still{opacity:.5;transform:none}
+@media (max-width:900px){.lamp{width:34%!important}.lamp:nth-child(n+6){display:none}}
+.herobox::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(15,14,19,.94) 0%,rgba(15,14,19,.82) 34%,rgba(15,14,19,.35) 62%,rgba(15,14,19,.1) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 22%,transparent 80%,var(--bg) 100%)}
+.herobox .hero{position:relative;z-index:1;grid-template-columns:minmax(0,1fr)!important;min-height:min(82vh,820px);align-content:center}
+.herobox .hero h1{max-width:13ch}
+.herobox .ctas{margin-top:38px}
+@media (max-width:900px){.wall{opacity:.6}.herobox::after{background:linear-gradient(0deg,var(--bg) 0%,rgba(15,14,19,.8) 45%,rgba(15,14,19,.55) 100%)}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(30px,5vw,80px);align-items:center;padding-block:clamp(50px,8vw,120px) clamp(40px,6vw,90px)}
+.hero .eyebrow{display:flex;gap:12px;align-items:center;color:var(--muted);margin-bottom:26px}
+.hero .eyebrow i{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(92,225,196,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(92,225,196,0)}100%{box-shadow:0 0 0 0 rgba(92,225,196,0)}}
+.hero h1{font-size:clamp(50px,7.4vw,112px);line-height:.98}
+.hero h1 .w{color:var(--coral)}
+.hero h1 .s{color:var(--saffron)}
+.hero .lede{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:52ch;margin:28px 0 34px}
+.hero .lede b{color:var(--fg);font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:12px;font:600 16px/1 var(--sans);text-decoration:none;padding:17px 24px;border-radius:99px;border:0;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .2s,color .2s}
+.btn svg{transition:transform .25s}
+.btn:hover svg{transform:translate(3px,-3px)}
+.btn.prime{background:var(--coral);color:#140A07}
+.btn.prime:hover{background:var(--fg)}
+.btn.ghost{background:transparent;color:var(--fg);box-shadow:inset 0 0 0 1.5px var(--line),inset 0 0 0 1.5px rgba(243,239,231,.35)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--fg)}
+.li{font:600 15px var(--sans);text-decoration:none;color:var(--fg);display:inline-flex;align-items:center;gap:8px;padding:10px 4px;border-bottom:1.5px solid var(--lilac)}
+.li:hover{color:var(--lilac)}
+.stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:clamp(20px,4vw,52px);margin-top:44px;padding-top:26px;border-top:1px solid var(--line)}
+.stats b{display:block;font:400 clamp(34px,3.4vw,46px)/1 var(--display);font-variant-numeric:lining-nums}
+.stats span{color:var(--dim);font-size:14px}
+/* hero stack */
+.stack{position:relative;aspect-ratio:1/1.05;max-width:560px;width:100%;justify-self:center;perspective:1200px}
+.stack .plate{position:absolute;inset:8% 4% 6% 10%;border-radius:36px;background:radial-gradient(120% 90% at 20% 10%,rgba(255,107,74,.35),transparent 55%),radial-gradient(100% 80% at 90% 90%,rgba(185,166,255,.32),transparent 55%),var(--bg-2);border:1px solid var(--line)}
+.stack .dev{position:absolute;transition:transform .5s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 30px 40px rgba(0,0,0,.55))}
+.stack .d1{left:6%;top:14%;width:34%;transform:rotate(-9deg) translate3d(calc(var(--px,0)*-14px),calc(var(--py,0)*-10px),0)}
+.stack .d2{left:33%;top:4%;width:36%;z-index:2;transform:translate3d(calc(var(--px,0)*10px),calc(var(--py,0)*8px),0)}
+.stack .d3{right:2%;top:16%;width:34%;transform:rotate(9deg) translate3d(calc(var(--px,0)*-8px),calc(var(--py,0)*-12px),0)}
+.stack .tag{position:absolute;z-index:3;font:600 13px/1 var(--sans);padding:10px 14px;border-radius:99px;box-shadow:0 14px 30px -12px rgba(0,0,0,.6);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.stack .t1{left:0;bottom:22%;background:var(--saffron);color:#1A1405;transform:rotate(-6deg) translate3d(calc(var(--px,0)*18px),0,0)}
+.stack .t2{right:0;bottom:10%;background:var(--lilac);color:#140F2A;transform:rotate(5deg) translate3d(calc(var(--px,0)*-18px),0,0)}
+.stack .t3{right:10%;top:2%;background:var(--mint);color:#06231C;transform:rotate(4deg)}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.stack{max-width:440px}}
+/* marquee */
+.ticker{border-block:1px solid var(--line);overflow:hidden}
+.ticker div{display:flex;gap:48px;white-space:nowrap;padding-block:22px;font:400 clamp(26px,3vw,40px)/1 var(--display);animation:tick 38s linear infinite;width:max-content;color:var(--muted)}
+.ticker em{color:var(--fg)}
+.ticker i{font-style:normal;color:var(--coral)}
+@keyframes tick{to{transform:translateX(-50%)}}
+/* work cards */
+.works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(22px,3vw,36px)}
+.proj{--acc:var(--coral);display:flex;flex-direction:column;border-radius:28px;background:var(--bg-2);border:1px solid var(--line);overflow:hidden;transition:border-color .3s,transform .5s cubic-bezier(.2,.8,.2,1);transform:perspective(1000px) rotateX(var(--ry,0deg)) rotateY(var(--rx,0deg))}
+.proj:hover{border-color:color-mix(in srgb,var(--acc) 60%,transparent)}
+.proj.big{grid-column:span 2}
+.cover{position:relative;aspect-ratio:16/11;max-width:100%;overflow:hidden;container-type:size;background:radial-gradient(90% 90% at 80% 0%,color-mix(in srgb,var(--acc) 38%,transparent),transparent 60%),radial-gradient(70% 70% at 0% 100%,color-mix(in srgb,var(--acc) 18%,transparent),transparent 60%),var(--bg-3)}
+.proj.big .cover{aspect-ratio:21/9}
+.cover[data-case]{cursor:pointer}
+.cover::after{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(80% 80% at 70% 30%,#000,transparent 75%);-webkit-mask-image:radial-gradient(80% 80% at 70% 30%,#000,transparent 75%);opacity:.5;pointer-events:none}
+.cover>*{position:absolute}
+.cover .dev{filter:drop-shadow(0 24px 30px rgba(0,0,0,.6));transition:transform .7s cubic-bezier(.2,.8,.2,1);z-index:1}
+.cover .word{left:6cqw;bottom:7cqh;z-index:2;max-width:44cqw;text-shadow:0 4px 24px rgba(15,14,19,.8);font:400 italic clamp(36px,9cqw,96px)/.9 var(--display);font-variation-settings:"opsz" 144,"SOFT" 100,"WONK" 1;color:var(--fg);letter-spacing:-.03em}
+.cover .word b{font-style:normal;color:var(--acc);font-weight:400}
+.cover .chip{left:6cqw;top:7cqh;z-index:2;font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:9px 12px;border-radius:99px;background:rgba(15,14,19,.7);border:1px solid var(--line);color:var(--fg);backdrop-filter:blur(6px)}
+.cover .chip i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--acc);margin-right:8px;vertical-align:1px}
+.cover .open{right:5cqw;top:6cqh;z-index:3;width:54px;height:54px;border-radius:50%;background:var(--acc);color:var(--bg);display:grid;place-items:center;transform:scale(.6) rotate(-45deg);opacity:0;transition:.4s cubic-bezier(.2,.8,.2,1)}
+.proj:hover .open,.cover:focus-visible .open{opacity:1;transform:none}
+@media (hover:none){.cover .open{opacity:1;transform:none}}
+/* per-cover devices */
+.p-enow{--acc:var(--coral)}
+.p-enow .a{right:34cqw;top:14cqh;width:20cqw;transform:rotate(-8deg)}
+.p-enow .b{right:16cqw;top:8cqh;width:21cqw;z-index:2}
+.p-enow .c{right:-1cqw;top:16cqh;width:20cqw;transform:rotate(8deg)}
+.proj.big .word{max-width:40cqw}
+.proj.big.p-psy .ui{width:34cqw;top:14cqh}
+.proj.big.p-enow .a{right:40cqw;top:12cqh;width:15cqw}
+.proj.big.p-enow .b{right:23cqw;top:6cqh;width:16cqw}
+.proj.big.p-enow .c{right:7cqw;top:14cqh;width:15cqw}
+.p-enow:hover .a{transform:rotate(-12deg) translate(-2cqw,1cqh)}.p-enow:hover .c{transform:rotate(12deg) translate(2cqw,1cqh)}.p-enow:hover .b{transform:translateY(-2cqh)}
+.p-mp{--acc:var(--saffron)}
+.p-mp .a{right:9cqw;top:10cqh;width:33cqw;transform:rotate(6deg)}
+.p-mp:hover .a{transform:rotate(2deg) translateY(-3cqh)}
+.p-vb{--acc:var(--lilac)}
+.p-vb .a{right:-10cqw;top:12cqh;width:66cqw;transform:rotate(-4deg)}
+.p-vb:hover .a{transform:rotate(-1deg) translate(-2cqw,-2cqh)}
+.p-psy{--acc:var(--mint)}
+.p-psy .ui{right:6cqw;top:16cqh;width:40cqw;display:flex;flex-direction:column;gap:2cqh;z-index:1;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.p-psy:hover .ui{transform:translateY(-2cqh)}
+.ui .card{background:#F3EFE7;color:#13241F;border-radius:2.4cqw;padding:2.6cqw;box-shadow:0 20px 30px -18px rgba(0,0,0,.7);font:600 clamp(9px,2.2cqw,15px)/1.25 var(--sans)}
+.ui .pills{display:flex;gap:1.4cqw;margin-bottom:1.6cqh}
+.ui .pills span{padding:.9cqw 1.8cqw;border-radius:99px;background:#E2E8E4;font-size:clamp(8px,1.8cqw,12px)}
+.ui .pills span:first-child{background:#1F5A47;color:#fff}
+.ui .row{display:flex;justify-content:space-between;padding:1.2cqh 0;border-top:1px solid #D7DED9;font-weight:500}
+.ui .row{align-items:center}.ui .bar{display:block;height:1.4cqw;min-height:7px;border-radius:99px;background:#C9D3CD}.ui .bar.s{width:14%;background:#1F5A47}.ui .tag{font-size:clamp(8px,1.7cqw,12px);background:#1F5A47;color:#fff;border-radius:99px;padding:.6cqw 1.6cqw}
+.ui .call{display:flex;align-items:center;gap:2cqw;background:#1F5A47;color:#fff}
+.ui .call i{width:5cqw;height:5cqw;border-radius:50%;background:var(--mint);display:grid;place-items:center;animation:ring 1.8s ease-in-out infinite}
+@keyframes ring{0%,100%{transform:rotate(0)}10%{transform:rotate(-14deg)}20%{transform:rotate(12deg)}30%{transform:rotate(-8deg)}40%{transform:rotate(0)}}
+.meta{padding:26px 28px 30px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 24px;align-items:end}
+.meta .mono{color:var(--dim);grid-column:1/-1}
+.meta h3{font-size:clamp(30px,2.8vw,42px)}
+.meta p{margin:6px 0 0;color:var(--muted);max-width:56ch;font-size:16.5px}
+.meta .acts{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.meta .acts button{font:600 15px/1 var(--sans);border:0;border-radius:99px;padding:14px 20px;background:var(--fg);color:var(--bg);cursor:pointer;transition:background .2s}
+.meta .acts button:hover{background:var(--acc)}
+.meta .acts a{font:600 14.5px var(--sans);color:var(--muted);text-decoration:none}
+.meta .acts a:hover{color:var(--fg)}
+@media (max-width:820px){.works{grid-template-columns:1fr}.proj.big{grid-column:auto}.proj.big .cover{aspect-ratio:16/11}.meta{grid-template-columns:1fr}.meta .acts{justify-content:flex-start}
+.proj.big.p-enow .a{right:34cqw;top:14cqh;width:20cqw}.proj.big.p-enow .b{right:16cqw;top:8cqh;width:21cqw}.proj.big.p-enow .c{right:-1cqw;top:16cqh;width:20cqw}}
+.cvband{margin-top:clamp(40px,5vw,70px);display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;padding:clamp(24px,3vw,36px);border-radius:28px;background:linear-gradient(110deg,var(--coral),#FF8E5E 45%,var(--saffron));color:#1A0D07}
+.cvband h3{font-size:clamp(30px,3.2vw,48px)}
+.cvband p{margin:6px 0 0;max-width:46ch;color:#3A1A0E;font-weight:500}
+.cvband .btn{background:#1A0D07;color:var(--fg)}
+.cvband .btn:hover{background:var(--fg);color:#1A0D07}
+/* approach */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.step{background:var(--bg);padding:clamp(24px,3vw,38px);min-height:270px;display:flex;flex-direction:column;gap:12px;position:relative;transition:background .3s}
+.step:hover{background:var(--bg-2)}
+.step .num{font:400 italic 64px/1 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1;color:var(--c)}
+.step h3{font-size:clamp(28px,2.6vw,36px);margin-top:auto}
+.step p{margin:0;color:var(--muted);font-size:16.5px}
+.step:nth-child(1){--c:var(--coral)}.step:nth-child(2){--c:var(--saffron)}.step:nth-child(3){--c:var(--lilac)}.step:nth-child(4){--c:var(--mint)}.step:nth-child(5){--c:var(--coral)}.step:nth-child(6){--c:var(--saffron)}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px);margin-top:clamp(60px,7vw,100px)}
+.pr{border-top:1px solid var(--line);padding-top:22px}
+.pr .mono{color:var(--c)}
+.pr h4{font-size:clamp(26px,2.4vw,34px);margin:14px 0 10px}
+.pr p{margin:0;color:var(--muted);font-size:16.5px}
+.pr:nth-child(1){--c:var(--coral)}.pr:nth-child(2){--c:var(--lilac)}.pr:nth-child(3){--c:var(--mint)}
+@media (max-width:820px){.principles{grid-template-columns:1fr}}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.tools span{font:500 14.5px/1 var(--sans);padding:12px 16px;border-radius:99px;border:1px solid var(--line);background:var(--bg-2);transition:border-color .2s,transform .2s}
+.tools span:hover{border-color:var(--saffron);transform:translateY(-2px)}
+/* about */
+.ab{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,5vw,80px);align-items:start}
+.portrait{position:sticky;top:110px}
+.portrait .frame{position:relative;border-radius:200px 200px 28px 28px;overflow:hidden;aspect-ratio:4/5;max-width:100%;background:var(--bg-2)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .frame::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--line);border-radius:inherit}
+.portrait .badge{position:absolute;right:-10px;bottom:30px;background:var(--saffron);color:#1A1405;padding:14px 18px;border-radius:20px;font:600 14px/1.2 var(--sans);transform:rotate(-5deg);box-shadow:0 20px 40px -16px rgba(0,0,0,.7)}
+.portrait .badge b{display:block;font:400 italic 26px/1 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1}
+.portrait figure{margin:0;position:relative}
+.story p{color:var(--muted);margin:0 0 20px;max-width:62ch}
+.story p.big{font:400 clamp(26px,2.6vw,36px)/1.3 var(--display);color:var(--fg);letter-spacing:-.01em}
+.story p.big em{color:var(--coral)}
+.story p strong{color:var(--fg);font-weight:600}
+.route{margin:clamp(40px,5vw,64px) 0;display:grid;gap:0}
+.stop{display:grid;grid-template-columns:110px 28px minmax(0,1fr);gap:16px;padding-bottom:28px;position:relative}
+.stop time{font:500 13px var(--mono);letter-spacing:.06em;color:var(--dim);padding-top:6px}
+.stop .dot{position:relative}
+.stop .dot::before{content:"";position:absolute;left:8px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 5px color-mix(in srgb,var(--c) 22%,transparent)}
+.stop .dot::after{content:"";position:absolute;left:13px;top:28px;bottom:-30px;width:2px;background:var(--line)}
+.stop:last-child .dot::after{display:none}
+.stop h4{font-size:24px}
+.stop h4 small{font:500 13px var(--mono);letter-spacing:.06em;color:var(--c);margin-left:10px;text-transform:uppercase}
+.stop p{margin:6px 0 0;color:var(--muted);font-size:16.5px}
+@media (max-width:820px){.ab{grid-template-columns:1fr}.portrait{position:relative;top:0;max-width:380px}.stop{grid-template-columns:80px 24px minmax(0,1fr)}}
+.blend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:var(--line);border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.blend div{background:var(--bg-2);padding:26px}
+.blend h4{font-size:26px;margin-bottom:12px}
+.blend ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;color:var(--muted);font-size:16px}
+.blend li::before{content:"→ ";color:var(--c)}
+.blend div:first-child{--c:var(--saffron)}.blend div:last-child{--c:var(--mint)}
+@media (max-width:620px){.blend{grid-template-columns:1fr}}
+/* contact */
+.ct{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start}
+.ct h2{font-size:clamp(60px,9vw,140px)}
+.ct h2 .w{color:var(--coral)}
+.ct .intro{color:var(--muted);max-width:42ch;margin:24px 0 32px}
+.links{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.links a,.links button{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 4px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--fg);text-decoration:none;font:500 clamp(18px,1.7vw,22px)/1.2 var(--sans);cursor:pointer;text-align:left;transition:padding .3s,color .2s}
+.links a:hover,.links button:hover{padding-left:14px;color:var(--c)}
+.links span.mono{color:var(--dim)}
+.links>*:nth-child(1){--c:var(--coral)}.links>*:nth-child(2){--c:var(--lilac)}.links>*:nth-child(3){--c:var(--saffron)}
+form{background:var(--bg-2);border:1px solid var(--line);border-radius:28px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:22px;min-width:0}
+label{display:flex;flex-direction:column;gap:10px;font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+input,textarea{font:400 18px var(--sans);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:15px 16px;width:100%;transition:border-color .2s,box-shadow .2s}
+input::placeholder,textarea::placeholder{color:var(--dim)}
+input:focus,textarea:focus{outline:none;border-color:var(--coral);box-shadow:0 0 0 4px rgba(255,107,74,.18)}
+textarea{resize:vertical;min-height:120px}
+input[type=range]{accent-color:var(--coral);padding:0;border:0;background:transparent;box-shadow:none}
+.budget-out{font:400 italic 22px var(--display);font-variation-settings:"SOFT" 100,"WONK" 1;text-transform:none;letter-spacing:0;color:var(--fg)}
+.range-row{display:flex;justify-content:space-between;font:500 11.5px var(--mono);color:var(--dim)}
+.send{align-self:flex-start}
+.sent{margin:0;font:400 italic 20px/1.35 var(--display);color:var(--mint)}
+@media (max-width:860px){.ct{grid-template-columns:1fr}}
+footer{border-top:1px solid var(--line);position:relative;z-index:1}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-block:26px 40px;color:var(--dim);font-size:14.5px}
+footer a{text-decoration:none}footer a:hover{color:var(--fg)}
+/* case study dialog */
+dialog.cs{width:100%;max-width:100%;height:100%;max-height:100%;margin:0;padding:0;border:0;background:var(--bg);color:var(--fg);overflow-y:auto;overscroll-behavior:contain}
+dialog.cs::backdrop{background:rgba(5,4,8,.8);backdrop-filter:blur(6px)}
+dialog.cs[open]{animation:dIn .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes dIn{from{opacity:0;transform:translateY(40px) scale(.98)}}
+@media (min-width:900px){dialog.cs{width:min(1100px,94vw);height:94vh;margin:auto;border-radius:28px;border:1px solid var(--line)}}
+.cs-bar{position:sticky;top:0;z-index:3;background:rgba(15,14,19,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding-top:calc(12px + env(safe-area-inset-top,0px));padding-bottom:12px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+@media (min-width:900px){.cs-bar{padding-top:12px}}
+.cs-bar .t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:500 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cs-bar button{font:600 14px/1 var(--sans);color:var(--fg);background:var(--bg-2);border:1px solid var(--line);border-radius:99px;padding:10px 14px;cursor:pointer}
+.cs-bar button:hover{border-color:var(--fg)}
+.cs-bar .x{background:var(--fg);color:var(--bg)}
+.cs-hero .cover{aspect-ratio:21/9;cursor:default}
+.cs-hero .open{display:none}
+.cs-main{max-width:820px;margin:0 auto;padding-block:48px 80px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:52px}
+.cs-main h2{font-size:clamp(42px,6vw,76px)}
+.cs-sub{font-size:clamp(19px,1.8vw,22px);line-height:1.5;margin:18px 0 0;color:var(--muted);max-width:52ch}
+.cs-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.cs-facts div{background:var(--bg-2);padding:16px;font-size:15px;line-height:1.45;min-width:0}
+.cs-facts span{display:block;font:500 11.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:6px}
+@media (max-width:640px){.cs-facts{grid-template-columns:1fr 1fr}}
+.cs-sec{display:flex;flex-direction:column;gap:16px}
+.cs-sec .lbl{font:500 12.5px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--saffron)}
+.cs-sec h3{font-size:clamp(30px,3.6vw,46px)}
+.cs-h4{font-size:24px;margin-top:10px}
+.cs-sec p{margin:0;color:#D9D4DF}
+.cs-sec ul,.cs-sec ol{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:9px;color:#D9D4DF}
+.cs-sec li::marker{color:var(--coral)}
+.cs-sec b{color:var(--fg);font-weight:600}
+.cs-quotes{display:flex;flex-direction:column;gap:12px}
+.cs-quotes q{display:block;font:400 italic clamp(22px,2.4vw,28px)/1.35 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1;padding:4px 0 4px 22px;border-left:3px solid var(--coral);color:var(--fg)}
+.cs-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cs-stats div{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;padding:22px;color:var(--muted);font-size:15px}
+.cs-stats strong{display:block;font:400 clamp(48px,6vw,72px)/1 var(--display);color:var(--saffron);margin-bottom:8px}
+.cs-swatches{display:flex;flex-wrap:wrap;gap:8px}
+.cs-swatches div{display:flex;align-items:center;gap:8px;font:500 12.5px var(--mono);background:var(--bg-2);border:1px solid var(--line);border-radius:99px;padding:5px 12px 5px 5px}
+.cs-swatches i{width:24px;height:24px;border-radius:50%}
+.cs-flows{display:grid;gap:10px}
+.cs-flows a{display:flex;justify-content:space-between;gap:12px;align-items:center;text-decoration:none;background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:18px 20px;font-weight:600;transition:border-color .2s,transform .2s}
+.cs-flows a:hover{border-color:var(--coral);transform:translateX(4px)}
+.cs-flows a small{display:block;font-weight:400;color:var(--muted);font-size:14.5px}
+.cs-close{background:linear-gradient(110deg,var(--coral),var(--saffron));color:#1A0D07;border-radius:24px;padding:34px 30px;display:flex;flex-direction:column;gap:20px}
+.cs-close p{margin:0;font:400 italic clamp(24px,3vw,34px)/1.25 var(--display);font-variation-settings:"SOFT" 100,"WONK" 1}
+.cs-next{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cs-next button{font:600 15px/1 var(--sans);background:#1A0D07;color:var(--fg);border:0;border-radius:99px;padding:14px 20px;cursor:pointer}
+.cs-next button.ghost{background:transparent;color:#1A0D07;box-shadow:inset 0 0 0 1.5px #1A0D07}
+body.locked{overflow:hidden}
+.cs-img{display:block;width:100%;height:auto;cursor:zoom-in;background:#fff;border-radius:16px}
+.cs-img.narrow{max-width:440px;margin-inline:auto}
+.cs-img.narrow-wide{max-width:620px;margin-inline:auto}
+.cs-img.phone{max-width:300px;margin-inline:auto;background:transparent}
+.cs-img.dev{background:transparent}
+.cs-gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cs-phones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(8px,2vw,20px)}
+.cs-phones .cs-img{background:transparent;aspect-ratio:415/827;object-fit:contain}
+.cs-scatter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1%;padding:24px 10px 48px;align-items:start}
+.cs-scatter figure{margin:0;background:#fff;padding:8px;border-radius:12px;box-shadow:0 24px 40px -22px rgba(0,0,0,.8);transition:transform .35s}
+.cs-scatter .cs-img{border-radius:6px}
+.cs-scatter figure:nth-child(1){transform:rotate(-6deg) translateY(14px);z-index:1}
+.cs-scatter figure:nth-child(2){transform:rotate(4deg) translateY(34px);z-index:2}
+.cs-scatter figure:nth-child(3){transform:rotate(-3deg) translateY(4px);z-index:3}
+.cs-scatter figure:hover{transform:rotate(0) scale(1.06);z-index:5}
+@media (max-width:640px){.cs-scatter{grid-template-columns:1fr}.cs-scatter figure{width:80%}.cs-scatter figure:nth-child(2){justify-self:end;margin-top:-16px}}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(5,4,8,.94);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;background:#fff;border-radius:12px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv.pre{opacity:1;transform:none}.glow{display:none}}
+</style>
+
+<div class="glow" aria-hidden="true"></div>
+<div class="curtain" aria-hidden="true"></div>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#work" data-ch="work"><b>Ip</b><span>Iva Pupavac</span></a>
+  <nav class="tabs" aria-label="Chapters">
+    <a href="#work" data-ch="work"><span class="n">01</span>My work</a>
+    <a href="#approach" data-ch="approach"><span class="n">02</span>Approach</a>
+    <a href="#about" data-ch="about"><span class="n">03</span>About</a>
+    <a href="#contact" data-ch="contact"><span class="n">04</span>Let’s talk</a>
+  </nav>
+  <a class="cv-top" href="/_blob/c7f1e52c53979259286f4e6506e5ba7b" data-cv target="_blank" rel="noopener">CV <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></a>
+</div></header>
+
+<main>
+<div class="chapter on" id="ch-work">
+  <div class="herobox">
+  <div class="wall" id="wall" aria-hidden="true"><figure class="lamp p" style="left:52%;top:6%;width:20%"><img alt=""></figure><figure class="lamp l" style="left:74%;top:4%;width:22%"><img alt=""></figure><figure class="lamp l" style="left:60%;top:38%;width:26%"><img alt=""></figure><figure class="lamp p" style="left:86%;top:34%;width:13%"><img alt=""></figure><figure class="lamp l" style="left:46%;top:64%;width:22%"><img alt=""></figure><figure class="lamp p" style="left:72%;top:66%;width:18%"><img alt=""></figure><figure class="lamp l" style="left:30%;top:8%;width:16%"><img alt=""></figure><figure class="lamp p" style="left:20%;top:60%;width:15%"><img alt=""></figure><figure class="lamp l" style="left:90%;top:72%;width:16%"><img alt=""></figure><script type="application/json" id="pool">["/_blob/0924344936bb3c1c43461811cd2c697d", "/_blob/9480106067bdc3d6729025ac4272df6a", "/_blob/037f804093fdf8f7818f7805be82bedc", "/_blob/c875e6ca45ef55c916ba5161a01f5291", "/_blob/142c45273e4c7118dd1ca15254a9eaa9", "/_blob/09d5682d017431d9f15925e18fd06c3e", "/_blob/a7d99faab0287b8aeb742992e6772cf6", "/_blob/2c4d0a5f194d2dea141b3a9186433066", "/_blob/eb18be748955ee338fec67e391ac8cdd", "/_blob/1ce6aaca2f59ca95d2ed80efda3b3b31", "/_blob/581f2d8eb55013fe2fcf8e31c3cb413b", "/_blob/7ee2e77a00e1c20069e79ef519bf24df", "/_blob/c6124284e38605f4e9b87872df16dbf0", "/_blob/89f919d4100704e6a1f3cd3b7eade2c3", "/_blob/509ee8220b2ef335c6d46058a7bf8b6b", "/_blob/81b7017a21d25f7915acc55b450156bb"]</script></div>
+  <section class="wrap hero" style="padding-top:clamp(50px,8vw,120px)">
+    <div>
+      <p class="eyebrow mono"><i></i>UI/UX &amp; graphic designer · The Netherlands</p>
+      <h1>A <span class="s">researcher’s</span> mind, a <em class="w">designer’s</em> soul.</h1>
+      <div class="ctas">
+        <a class="btn prime" href="#cases">See the work <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
+        <a class="btn ghost" href="/_blob/c7f1e52c53979259286f4e6506e5ba7b" data-cv target="_blank" rel="noopener">Download CV <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></a>
+        <a class="li" href="https://www.linkedin.com/in/iva-pupavac-0a14881b2" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="ticker" aria-hidden="true"><div>
+    <span>Print discipline</span><i>✦</i><em class="w">digital empathy</em><i>✦</i><span>Design systems</span><i>✦</i><em class="w">colour with a reason</em><i>✦</i><span>Research before pixels</span><i>✦</i>
+    <span>Print discipline</span><i>✦</i><em class="w">digital empathy</em><i>✦</i><span>Design systems</span><i>✦</i><em class="w">colour with a reason</em><i>✦</i><span>Research before pixels</span><i>✦</i>
+  </div></div>
+  <section class="wrap" id="cases">
+    <div class="chap-head rv"><div><span class="mono">01 · My work</span><h2>Selected <em class="w k-coral">work</em></h2></div><p>Four projects, four very different people on the other side of the screen. Open any card for the full story, from the first interview to the last pixel.</p></div>
+    <div class="works"><article class="proj p-enow big rv">
+  <div class="cover" data-case="enow"><span class="chip"><i></i>Native app · 2025</span><img class="dev a" src="/_blob/9480106067bdc3d6729025ac4272df6a" alt=""><img class="dev b" src="/_blob/1ce6aaca2f59ca95d2ed80efda3b3b31" alt=""><img class="dev c" src="/_blob/509ee8220b2ef335c6d46058a7bf8b6b" alt=""><p class="word"><b>Too</b> much?</p><span class="open" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+  <div class="meta"><span class="mono">01 · Wellness app · Brand identity · 4 weeks</span><div><h3>Enow</h3><p>A voice-first app for parents at their breaking point. One word starts a calm minute: no questions, no streaks, no guilt.</p></div><div class="acts"><button type="button" data-open>Read the case study</button><a href="https://www.figma.com/proto/vDOhmc7l8ViBaq7EaxSk18/P4-Team-3---Wellness-app--%7C-Tereza---Iva?node-id=18817-4605&starting-point-node-id=18817%3A4605&show-proto-sidebar=1&page-id=116%3A10" target="_blank" rel="noopener">Prototype ↗</a></div></div>
+</article><article class="proj p-mp rv">
+  <div class="cover" data-case="marktplaats"><span class="chip"><i></i>Android redesign</span><img class="dev a" src="/_blob/142c45273e4c7118dd1ca15254a9eaa9" alt=""><p class="word"><b>Bieden</b>?</p><span class="open" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+  <div class="meta"><span class="mono">02 · Solo · 1 week</span><div><h3>Marktplaats, reimagined</h3><p>The Netherlands’ biggest marketplace, rebuilt for the expats who need it most.</p></div><div class="acts"><button type="button" data-open>Read the case study</button><a href="https://www.figma.com/proto/i4j1FCmlgmG185kRkhMUMP/Iva-Pupavac---Marktplaats?node-id=13451-844&starting-point-node-id=13451%3A844&show-proto-sidebar=1&page-id=116%3A21" target="_blank" rel="noopener">Prototype ↗</a></div></div>
+</article><article class="proj p-vb rv">
+  <div class="cover" data-case="viviana"><span class="chip"><i></i>Responsive web</span><img class="dev a" src="/_blob/c6124284e38605f4e9b87872df16dbf0" alt=""><p class="word">Have brush, <b>will travel</b>.</p><span class="open" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+  <div class="meta"><span class="mono">03 · Luxury branding · 4 weeks</span><div><h3>Viviana Bridal</h3><p>A destination makeup artist whose website finally matches the quality of her work.</p></div><div class="acts"><button type="button" data-open>Read the case study</button><a href="https://www.figma.com/proto/fGAA0Gw7Freu1frsoU1JBj/P2-G4-E-Commerce-%7C-Iulia-Pol--Iva--Micaela?node-id=13272-6230&starting-point-node-id=13272%3A6230&page-id=801%3A8072" target="_blank" rel="noopener">Prototype ↗</a></div></div>
+</article><article class="proj p-psy big rv">
+  <div class="cover" data-case="psy"><span class="chip"><i></i>In progress · Healthcare</span><div class="ui" aria-hidden="true"><div class="card"><div class="pills"><span>Treatment</span><span>Diagnostics</span><span>Other</span></div><div class="row"><span class="bar" style="width:52%"></span><span class="tag">Most common</span></div><div class="row"><span class="bar" style="width:40%"></span><span class="bar s"></span></div><div class="row"><span class="bar" style="width:46%"></span><span class="bar s"></span></div></div><div class="card call"><i><svg width="60%" viewBox="0 0 24 24" fill="#13241F"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></i>Calling the practice…</div></div><p class="word">How does <b>eigen risico</b> feel?</p><span class="open" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></span></div>
+  <div class="meta"><span class="mono">04 · Mobile-first web · Team of 2</span><div><h3>A calmer way into therapy</h3><p>A psychologist’s website that explains prices, insurance and GP referrals in plain language, for clients and for the doctors who send them.</p></div><div class="acts"><button type="button" data-open>Read the case study</button></div></div>
+</article></div>
+    <div class="cvband rv"><div><h3>Want the short version?</h3><p>Experience, education and tools on one page. Easy to forward.</p></div><a class="btn" href="/_blob/c7f1e52c53979259286f4e6506e5ba7b" data-cv target="_blank" rel="noopener">Download CV <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></a></div>
+  </section>
+</div>
+
+<div class="chapter" id="ch-approach">
+  <section class="wrap">
+    <div class="chap-head rv"><div><span class="mono">02 · Approach</span><h2>How I <em class="w k-saffron">work</em></h2></div><p>The order rarely changes. Skipping the first step is how apps end up lecturing stressed parents.</p></div>
+    <div class="steps"><article class="step rv"><span class="num">01</span><h3>Listen</h3><p>Interviews, surveys, affinity maps. I collect the sentences people actually say, because those end up shaping the product more than any assumption I walk in with.</p></article><article class="step rv"><span class="num">02</span><h3>Find the person</h3><p>Maya, Elizabeth, an expat with an empty flat. One specific human to design for keeps every decision honest.</p></article><article class="step rv"><span class="num">03</span><h3>Cut hard</h3><p>MoSCoW until the first version fits in one sentence. What stays out matters as much as what goes in.</p></article><article class="step rv"><span class="num">04</span><h3>Sketch ugly</h3><p>Paper first, in front of users the same day. Cheap mistakes now are the best investment I know.</p></article><article class="step rv"><span class="num">05</span><h3>Test with people</h3><p>The back icon looked like a menu. Five users told me before launch did. That is what testing is for.</p></article><article class="step rv"><span class="num">06</span><h3>Finish properly</h3><p>Style tile, components, a real prototype and a desirability test. Print taught me that finished means finished.</p></article></div>
+    <div class="principles">
+      <article class="pr rv"><span class="mono">Principle one</span><h4>Beauty is not optional</h4><p>A screen that works but feels cheap loses trust before anyone reads a word. Craft is part of usability.</p></article>
+      <article class="pr rv"><span class="mono">Principle two</span><h4>Quotes over opinions</h4><p>Mine included. When a user says “I hear enough of that elsewhere”, that sentence beats any idea I had in the shower.</p></article>
+      <article class="pr rv"><span class="mono">Principle three</span><h4>Systems, not screens</h4><p>Atoms, tokens, components. If it only works once, it is not finished yet.</p></article>
+    </div>
+    <div class="rv" style="margin-top:clamp(60px,7vw,100px)"><span class="mono" style="color:var(--dim)">Toolbox</span><div class="tools"><span>Figma</span><span>Framer</span><span>Illustrator</span><span>Photoshop</span><span>InDesign</span><span>3ds Max</span><span>User interviews</span><span>Usability testing</span><span>Design systems</span><span>Prototyping</span></div></div>
+  </section>
+</div>
+
+<div class="chapter" id="ch-about">
+  <section class="wrap">
+    <div class="chap-head rv"><div><span class="mono">03 · About</span><h2>From Novi Sad <em class="w k-lilac">to here</em></h2></div><p>The long way round, which turned out to be the right one.</p></div>
+    <div class="ab">
+      <div class="portrait rv"><figure><div class="frame"><img src="/_blob/1a8965548cef95b6db5673b2eb953ffd" alt="Iva Pupavac"></div><figcaption class="badge"><b>Hoi, ik ben Iva</b>Apeldoorn, NL</figcaption></figure></div>
+      <div class="story">
+        <p class="big rv">I started where most designers pretend they didn’t: <em>with deadlines, printers and clients who wanted it yesterday.</em></p>
+        <p class="rv">At FTN Novi Sad I studied Graphic Engineering and Design, which is a polite way of saying I learned colour profiles, paper weights and why a logo that fails at 16 pixels fails everywhere. I made 2D game art at EPIX, identities and logos at a Belgrade studio, and at Newpress in Smederevo I owned a magazine from the theme to the last page.</p>
+        <p class="rv">Then I moved to the Netherlands and chose to start again. <strong>The Ironhack UI/UX bootcamp</strong> gave my visual instinct a method: interviews, personas, testing, systems. It also gave me permission to be wrong early, which print never did.</p>
+        <p class="rv">What I bring now is the combination. I can run the research and I can make the result beautiful, and I don’t need to hand either part to someone else.</p>
+        <div class="route">
+          <div class="stop rv" style="--c:var(--saffron)"><time>2003–16</time><span class="dot"></span><div><h4>FTN Novi Sad<small>Study</small></h4><p>Graphic Engineering and Design</p></div></div>
+          <div class="stop rv" style="--c:var(--coral)"><time>2008–09</time><span class="dot"></span><div><h4>EPIX Novi Sad<small>Game art</small></h4><p>2D assets and environments, from concept to final render, built with developers.</p></div></div>
+          <div class="stop rv" style="--c:var(--coral)"><time>2009–11</time><span class="dot"></span><div><h4>Design studio, Belgrade<small>Identity</small></h4><p>Visual identities and custom logos, translating business goals into clean vector work.</p></div></div>
+          <div class="stop rv" style="--c:var(--coral)"><time>2012–14</time><span class="dot"></span><div><h4>Newpress Smederevo<small>Print</small></h4><p>Flyers, billboards, business cards, and a magazine I ran from theme to layout.</p></div></div>
+          <div class="stop rv" style="--c:var(--mint)"><time>2025</time><span class="dot"></span><div><h4>Ironhack, the Netherlands<small>UI/UX</small></h4><p>Research, wireframing, prototyping and high-fidelity UI, tested with real users.</p></div></div>
+          <div class="stop rv" style="--c:var(--lilac)"><time>Now</time><span class="dot"></span><div><h4>UI/UX designer<small>Today</small></h4><p>Apps and websites, mobile-first, with the brand work done properly.</p></div></div>
+        </div>
+        <div class="blend rv">
+          <div><h4>From graphic design</h4><ul><li>Typography that holds at every size</li><li>Colour that means something</li><li>Identity and brand systems</li><li>Print-level attention to detail</li></ul></div>
+          <div><h4>From UI/UX</h4><ul><li>Interviews and usability testing</li><li>Personas, journeys, flows</li><li>Atomic design systems</li><li>Prototypes people can actually use</li></ul></div>
+        </div>
+        <p class="rv" style="margin-top:28px">Off-screen I make jewelry, sew, sketch for children and walk in the forest. Same habit, different materials.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="chapter" id="ch-contact">
+  <section class="wrap">
+    <div class="ct">
+      <div class="rv">
+        <span class="mono" style="color:var(--dim)">04 · Let’s talk</span>
+        <h2 style="margin-top:16px">Got something <em class="w">worth making?</em></h2>
+        <p class="intro">A product that needs research, a brand that needs a spine, or a team that needs one more pair of hands that can do both. Tell me what you’re working on.</p>
+        <div class="links">
+          <a id="mail" href="mailto:ivapupavac@proton.me" target="_top">ivapupavac@proton.me <span class="mono">Email</span></a>
+          <a href="https://www.linkedin.com/in/iva-pupavac-0a14881b2" target="_blank" rel="noopener">LinkedIn <span class="mono">Profile ↗</span></a>
+          <a href="/_blob/c7f1e52c53979259286f4e6506e5ba7b" data-cv target="_blank" rel="noopener">Download CV <span class="mono">PDF ↓</span></a>
+        </div>
+        <button type="button" id="copyMail" class="btn ghost" style="margin-top:22px">Copy email</button>
+      </div>
+      <form id="form" class="rv" novalidate>
+        <label for="nm">Your name<input id="nm" name="nm" autocomplete="name" placeholder="Ana de Vries" required></label>
+        <label for="em">Email<input id="em" name="em" type="email" autocomplete="email" placeholder="ana@studio.nl" required></label>
+        <label for="idea">What are you working on?<textarea id="idea" name="idea" placeholder="A few lines are enough to start."></textarea></label>
+        <label for="bud">Scope <span class="budget-out" id="budOut">A proper website</span>
+          <input id="bud" type="range" min="0" max="4" step="1" value="2">
+          <span class="range-row"><span>One coffee</span><span>Long-term partner</span></span>
+        </label>
+        <button class="btn prime send" type="submit">Send message <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></button>
+        <p class="sent" id="sent" hidden></p>
+      </form>
+    </div>
+  </section>
+</div>
+</main>
+
+<dialog class="cs" id="cs" aria-labelledby="csTitle"></dialog>
+
+<footer><div class="wrap"><span>© 2026 Iva Pupavac · UI/UX &amp; graphic designer</span><span>Apeldoorn, the Netherlands</span><a href="#work" data-ch="work">Back to top ↑</a></div></footer>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- chapters ---------- */
+  const chs=['work','approach','about','contact'];
+  const curtain=document.querySelector('.curtain');
+  function setNav(id){ document.querySelectorAll('.tabs a').forEach(a=>a.toggleAttribute('aria-current',a.dataset.ch===id)); document.querySelectorAll('.tabs a[aria-current]').forEach(a=>a.setAttribute('aria-current','page')); }
+  function show(id,anim){
+    if(!chs.includes(id)) id='work';
+    const cur=document.querySelector('.chapter.on'); const nxt=document.getElementById('ch-'+id);
+    setNav(id);
+    if(cur===nxt){ window.scrollTo({top:0,behavior:reduce?'auto':'smooth'}); return; }
+    const swap=()=>{ if(cur) cur.classList.remove('on'); nxt.classList.add('on'); window.scrollTo(0,0); prep(nxt); };
+    if(anim && !reduce){ curtain.classList.remove('go'); void curtain.offsetWidth; curtain.classList.add('go'); setTimeout(swap,420); } else swap();
+  }
+  document.querySelectorAll('[data-ch]').forEach(a=>a.addEventListener('click',e=>{ e.preventDefault(); show(a.dataset.ch,true); try{history.replaceState(null,'','#'+a.dataset.ch)}catch(_){} }));
+  document.querySelector('a[href="#cases"]').addEventListener('click',e=>{ e.preventDefault(); document.getElementById('cases').scrollIntoView({behavior:reduce?'auto':'smooth'}); });
+  /* ---------- works light up ---------- */
+  (function(){
+    const lamps=[...document.querySelectorAll('.lamp')]; let pool=[];
+    try{ pool=JSON.parse(document.getElementById('pool').textContent); }catch(_){}
+    if(!lamps.length||!pool.length) return;
+    const shown=new Set();
+    const pick=()=>{ let tries=0, src; do{ src=pool[Math.floor(Math.random()*pool.length)]; }while(shown.has(src)&&tries++<20); return src; };
+    if(reduce){ lamps.slice(0,5).forEach((l,i)=>{ l.querySelector('img').src=pool[i%pool.length]; l.classList.add('still'); }); return; }
+    function light(l){
+      const img=l.querySelector('img'), src=pick(); shown.add(src); l.busy=true;
+      const go=()=>{ img.onload=null; l.classList.remove('off'); void l.offsetWidth; l.classList.add('on');
+        setTimeout(()=>{ l.classList.remove('on'); l.classList.add('off');
+          setTimeout(()=>{ l.classList.remove('off'); shown.delete(src); l.busy=false; },1500);
+        },3800+Math.random()*2600); };
+      img.onerror=()=>{ shown.delete(src); l.busy=false; };
+      img.onload=go; img.src=src; if(img.complete && img.naturalWidth) go();
+    }
+    function tick(){ if(document.hidden) return; const idle=lamps.filter(l=>!l.busy && getComputedStyle(l).display!=='none'); if(idle.length) light(idle[Math.floor(Math.random()*idle.length)]); }
+    for(let i=0;i<3;i++) setTimeout(tick,200+i*500);
+    setInterval(tick,1300);
+  })();
+  /* ---------- reveal on scroll ---------- */
+  const io='IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.remove('pre'); io.unobserve(en.target);} }),{rootMargin:'0px 0px -8% 0px'}) : null;
+  function prep(root){ if(!io||reduce) return; root.querySelectorAll('.rv').forEach((el,i)=>{ const r=el.getBoundingClientRect(); if(r.top>innerHeight*0.92){ el.classList.add('pre'); el.style.transitionDelay=(i%3*70)+'ms'; io.observe(el);} }); }
+  const start=(location.hash||'').slice(1);
+  show(chs.includes(start)?start:'work',false);
+  /* ---------- cursor glow + tilt ---------- */
+  const glow=document.querySelector('.glow');
+  if(!reduce && matchMedia('(pointer:fine)').matches){
+    addEventListener('pointermove',e=>{ glow.style.setProperty('--x',e.clientX+'px'); glow.style.setProperty('--y',e.clientY+'px'); },{passive:true});
+    const wl=document.getElementById('wall');
+    wl.parentElement.addEventListener('pointermove',e=>{ const r=wl.parentElement.getBoundingClientRect(); wl.style.translate=`${((e.clientX-r.left)/r.width-.5)*-24}px ${((e.clientY-r.top)/r.height-.5)*-16}px`; });
+    document.querySelectorAll('.proj').forEach(p=>{
+      p.addEventListener('pointermove',e=>{ const r=p.getBoundingClientRect(); p.style.setProperty('--rx',(((e.clientX-r.left)/r.width-.5)*4).toFixed(2)+'deg'); p.style.setProperty('--ry',((-(e.clientY-r.top)/r.height+.5)*4).toFixed(2)+'deg'); });
+      p.addEventListener('pointerleave',()=>{ p.style.setProperty('--rx','0deg'); p.style.setProperty('--ry','0deg'); });
+    });
+  } else if(glow) glow.remove();
+  /* ---------- contact ---------- */
+  const scopes=['One coffee chat','A logo that smiles','A proper website','A full product','A long-term partnership'];
+  const bud=document.getElementById('bud'), out=document.getElementById('budOut');
+  bud.addEventListener('input',()=>out.textContent=scopes[bud.value]);
+  document.getElementById('form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const nm=document.getElementById('nm'), em=document.getElementById('em'), sent=document.getElementById('sent');
+    sent.hidden=false;
+    if(!nm.value.trim()||!em.checkValidity()||!em.value){sent.textContent='I need your name and a working email so I can write back.';return;}
+    const msg='Hi Iva,\n\n'+(document.getElementById('idea').value.trim()||'I have an idea I would like to talk about.')+'\n\nScope: '+scopes[bud.value]+'\n\n'+nm.value.trim()+'\n'+em.value.trim();
+    const first=nm.value.trim().split(' ')[0];
+    const url='mailto:ivapupavac@proton.me?subject='+encodeURIComponent('Project inquiry from '+nm.value.trim())+'&body='+encodeURIComponent(msg);
+    const a=document.createElement('a'); a.href=url; a.target='_top'; a.rel='noopener'; document.body.appendChild(a); a.click(); a.remove();
+    sent.textContent='Thanks, '+first+'! Your email app should open with the message ready to send. If it doesn’t, write to ivapupavac@proton.me.';
+    try{navigator.clipboard.writeText(msg).then(()=>{sent.textContent='Thanks, '+first+'! Your email app should open with the message ready. If it doesn’t, the message is copied, just paste it into an email to ivapupavac@proton.me.'},()=>{})}catch(_){}
+  });
+
+  document.getElementById('copyMail').addEventListener('click',e=>{
+    const b=e.currentTarget, el=document.getElementById('mail');
+    const sel=()=>getSelection().selectAllChildren(el);
+    try{navigator.clipboard.writeText(el.textContent).then(()=>{b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1600)},sel)}catch(_){sel()}
+  });
+
+  /* ---------- CV download ---------- */
+  const CV='/_blob/c7f1e52c53979259286f4e6506e5ba7b';
+  let dl=null; (window.claude?.use ? claude.use('downloads') : Promise.resolve(null)).then(d=>dl=d).catch(()=>{});
+  document.querySelectorAll('[data-cv]').forEach(a=>a.addEventListener('click',async e=>{
+    if(!dl) return; e.preventDefault();
+    try{const r=await fetch(CV); const b=await r.blob(); await dl.save({filename:'Iva-Pupavac-CV.pdf',data:b});}
+    catch(err){ if(!(err&&/declin|cancel|abort/i.test(String(err.code||err.message||'')))) window.open(CV,'_blank'); }
+  }));
+
+  /* ---------- case studies ---------- */
+  const CASES={"enow": {"name": "Enow", "title": "Where the space to breathe begins?", "sub": "Designing a native mobile wellness app and a refreshed visual identity to tackle real-time stress for busy parents.", "facts": [["Role", "UX/UI Designers (Team: Tereza & Iva)"], ["Client", "The Daily Health Conference (San Francisco-based nonprofit)"], ["Timeline", "4 Weeks"], ["Key Deliverables", "Native Mobile App, Brand Identity, High-Fidelity Prototype"]], "blocks": [{"lbl": "Overview", "parts": [["p", "In today’s fast-paced world, the boundary between professional and personal life has completely blurred. Juggling demanding jobs, families, pets, and endless to-do lists creates a silent, cumulative stress. This stress directly triggers sleep issues, poor eating habits, and low mood."], ["p", "The Daily Health Conference recognized this modern crisis. The brief was clear yet challenging: design a mobile wellness app and a refreshed visual identity, focusing specifically on stress reduction right when it happens."]]}, {"lbl": "Research", "parts": [["p", "To solve such a deeply human problem, we couldn’t rely on assumptions. We started by mapping out a Lean UX Canvas and a Lean Survey Canvas to align our research goals. We conducted thorough user research interviews and surveys. While data backed up our instincts, the raw quotes from real users truly drove our design:"], ["h4", "The Numbers"], ["stats", [["1 in 3", "EU workers report high stress."], ["46%", "of the population experienced emotional or psychosocial difficulties in the past 12 months."]]], ["h4", "The Voice of the Users"], ["q", ["I can’t come down, because it’s 24/7 stress.", "Give me an instant solution right away, something that could stabilize me.", "I don’t need an app telling me what I’m doing wrong, I hear enough of that elsewhere."]], ["p", "We analyzed industry leaders like Headspace, Calm, OtterLife, and Apple Mindfulness. While beautifully designed, they all share a common friction point: they require time, long sessions, or complex onboarding."], ["p", "This is where we discovered the market gap for Enow: the only app built specifically around acute stress, featuring almost zero barrier to get started."], ["img", ["/_blob/537796ad4e16518b20fb79598cdb630f", "Competitors: Headspace, Calm, OtterLife and Apple Mindfulness"]]]}, {"lbl": "User persona", "h": "User persona", "parts": [["p", "To design with true empathy, we created our user persona: Maya Linqvist (39)."], ["p", "Maya is married, has three kids, and recently returned to work as an office assistant after financial hardship. Her inner critic is loud, and she constantly feels guilty about things she \"should\" be doing better. When she reaches her tipping point, she doesn’t need a lecture. Her quote became our north star:"], ["q", ["Let it be more like a little escape, not another task I have to get done."]], ["img", ["/_blob/0924344936bb3c1c43461811cd2c697d", "User persona: Maya Linqvist, 39, office assistant with three kids"]]]}, {"lbl": "Journey map", "h": "Journaling map", "parts": [["p", "Through Maya's Journey Map, we traced her day from a chaotic morning routine to an evening breakdown. We realized the app must step in exactly at that tipping point—acknowledging her distress via voice control and offering an instant \"SOS button\" without asking upfront questions."], ["img", ["/_blob/eb18be748955ee338fec67e391ac8cdd", "Journey map of Maya’s day from stressful evening to calm reset"]]]}, {"lbl": "Problem statement", "h": "The Final Problem Statement", "parts": [["p", "Full-time parents of young children need a way to cope with stress as it builds throughout the day, but existing apps either stay silent until it peaks, or expect a full session right away, with no simple way to feel acknowledged in the moment."], ["img", ["/_blob/aff764944283eceaa128b91aedee3dea", "Illustration of an overwhelmed parent surrounded by kids, phone and clock"]]]}, {"lbl": "Prioritization", "h": "MoSCoW Method", "parts": [["p", "Using the MoSCoW method to shape our prototype, we distilled countless ideas into a simple, rapid solution for our Minimum Viable Product (MVP):"], ["ul", ["<b>Must Have:</b> Voice control + SOS button (hands-free activation for panic moments) and a sensory exercise menu (quick touch, sound, breath and sight exercises - all under 5 minutes).", "<b>Should Have:</b> Quick mood color check-ins and guilt-free notification (where clicking “not now” breaks no streaks and causes no nagging)."]], ["img", ["/_blob/329a3c0e0d1e7a6d987fbf2fa512ed72", "MoSCoW board: Must, Should, Could and Won’t have"]]]}, {"lbl": "User flow", "h": "User Flow", "parts": [["p", "We mapped out user flows tracking Maya through three critical scenarios: a quick sign-up with an instant SOS trigger, finding quick sensory exercises, and exploring wider features. Our goal: zero added cognitive load."], ["stack", [["/_blob/a31848d6e773c7615f8e28cdbc9a858d", "User flow: SOS trigger"], ["/_blob/446048e730621244c79eed028f54f960", "Dashboard flow"]]]]}, {"lbl": "Testing", "h": "From Low-Fi to Mid-Fi Testing", "parts": [["p", "We created rough sketches and immediately put them in front of users. Testing with our first user, Ambre, uncovered critical friction points:"], ["ul", ["She did not understand the SOS mode purpose.", "She was confused by having to set a timer duration in advance.", "She completely overlooked the “My Choice” section."]], ["img", ["/_blob/1e5792342630c454ac68e26c8152af68", "Low-fidelity wireframes of the Enow app"]], ["p", "Based on this, we translated the sketches into mid-fidelity wireframes. We noticed the old sign-up flow felt cold and the schedule layout was too packed. The app needed to feel gentler, more personal, and have a stronger visual focus."]]}, {"lbl": "Moodboard", "h": "Moodboard: Translating the Feeling", "parts": [["p", "Before building the actual components, we established the visual direction. Our competitive analysis showed that Headspace uses playful characters, while Calm uses soothing blue tones. We carved out a unique gap that balances warmth with deep serenity."], ["img", ["/_blob/09d5682d017431d9f15925e18fd06c3e", "Enow moodboard: warm light, knitwear, calm landscapes"]], ["p", "We defined five core brand attributes: <b>Calm, Confident, Empowering, Personal, and Trustworthy.</b> Our Moodboard reflects these attributes through warm, natural, human imagery that evokes breathing, safety, and a moment to reset."]]}, {"lbl": "Style tile", "h": "Style Tile: Making the Design Decisions", "parts": [["p", "The Style Tile bridges the gap between \"the feeling we want\" and \"how we visually communicate it.\" Every asset was chosen with a specific UX purpose:"], ["ul", ["<b>Color Palette:</b> We chose warm, earthy tones to convey gentleness and safety, pairing them with deep, stable blues that ground the user when they feel overwhelmed.", "<b>Typography:</b> We paired the characterful, organic font Bricolage Grotesque for expressive display headers with Instrument Sans for highly readable body copy. To ensure maximum accessibility during high-stress moments, the body text never drops below 16px.", "<b>UI Elements & Imagery:</b> Buttons and cards feature soft, rounded corners to feel approachable, intentionally avoiding sharp, rigid edges that could induce subconscious anxiety."]], ["img", ["/_blob/2c4d0a5f194d2dea141b3a9186433066", "Enow style tile: colors, typography, navigation and buttons", "narrow"]]]}, {"lbl": "Prototype", "h": "High-Fidelity Prototype: Deep Dive into Maya's Experience", "parts": [["p", "Instead of a simple screen tour, the final interactive high-fidelity prototype demonstrates how the design directly supports Maya's needs across three intentional flows:"], ["phones", [["/_blob/9480106067bdc3d6729025ac4272df6a", "Create account screen"], ["/_blob/1ce6aaca2f59ca95d2ed80efda3b3b31", "Home screen"], ["/_blob/509ee8220b2ef335c6d46058a7bf8b6b", "Voice journaling screen"]]], ["h4", "Flow 1: SOS / Voice Modal"], ["p", "When Maya is completely overwhelmed, the last thing she wants to do is look at a screen and navigate multiple menus. We designed a voice-first interaction so she can trigger immediate support hands-free. Even if she's panicked and the phone struggles to register her voice initially, a realistic edge-case backup ensures it catches her distress on the second try and instantly launches an under-5-minute exercise."], ["flows", [["Open Flow 1: SOS / Voice Modal", "Figma prototype", "https://www.figma.com/proto/vDOhmc7l8ViBaq7EaxSk18/P4-Team-3---Wellness-app--%7C-Tereza---Iva?node-id=18817-4605&viewport=-7574%2C-4826%2C0.76&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18817%3A4605&show-proto-sidebar=1&page-id=116%3A10"]]], ["h4", "Flow 2: Voice Journaling"], ["p", "Maya has extremely limited time and zero desire to type out long paragraphs when she's stressed. The voice journaling feature allows her to vent and dump her thoughts instantly. It solves her need for a quick emotional release without turning self-reflection into another demanding smartphone chore."], ["flows", [["Open Flow 2: Voice Journaling", "Figma prototype", "https://www.figma.com/proto/vDOhmc7l8ViBaq7EaxSk18/P4-Team-3---Wellness-app--%7C-Tereza---Iva?node-id=18754-4134&viewport=-7574%2C-4826%2C0.76&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18754%3A4134&show-proto-sidebar=1&page-id=116%3A10"]]], ["h4", "Flow 3: Exploring the App"], ["p", "When Maya is calm and has a moment to herself, she can navigate the app using the toolbar. On the dashboard, she can check her progress—not to feel pressured by streaks, but because she wants to understand if these activities are genuinely helping her over time. She also has full, stress-free control over her profile and can adjust her goals whenever her hectic life schedule changes."], ["flows", [["Open Flow 3: Exploring the App", "Figma prototype", "https://www.figma.com/proto/vDOhmc7l8ViBaq7EaxSk18/P4-Team-3---Wellness-app--%7C-Tereza---Iva?node-id=18754-4133&viewport=-7574%2C-4826%2C0.76&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18754%3A4133&show-proto-sidebar=1&page-id=116%3A10"]]]]}, {"lbl": "Validation", "h": "Desirability Testing", "parts": [["p", "To validate our emotional design goals and ensure our UI communicated the intended feelings of care and relief, we conducted Desirability Testing using the Microsoft Reaction Cards method via Google Forms. Users selected words that best matched their emotional response to the interface. The top-voted words were:"], ["img", ["/_blob/3942dabd77e05aa0a767636bd7251b47", "Top-voted reaction words: Friendly, Easy to use, Professional, Secure, Useful"]], ["p", "This confirmed that the transition from our moodboard to the final UI successfully delivered a sense of safety and professional trust."]]}, {"lbl": "Iteration", "h": "The Power of Iteration", "parts": [["p", "Testing actively shaped our final product. The major design evolutions included:"], ["ol", ["<b>The Welcome Experience:</b> Transformed a cold, standard sign-up into a warm, personalized onboarding flow where Maya can share her immediate preferences.", "<b>The Homepage Hub:</b> Stripped away heavy, complex graphics and intimidating charts, replacing them with a simple greeting, 4 intuitive mood icons, and one dominant main action button for instant sessions.", "<b>The Clean Dashboard:</b> Replaced packed schedules with a streamlined progress tracker, ensuring that checking goals never feels like an added cognitive load."]], ["scatter", [["/_blob/552547922889318c334d77ff7b17e9f3", "Welcome experience: a cold sign-up became a personal onboarding"], ["/_blob/05a6c62f39d119e4c4edd37ef7fcff80", "Homepage hub: from a crowded wireframe to a calm home screen"], ["/_blob/a18649a88d428201b3e96fd297b1e900", "Homepage and dashboard: from charts to a calm overview"]]]]}, {"lbl": "Next steps", "h": "Next Steps", "parts": [["p", "By listening to our users at every milestone, we built a safe, portable space for people like Maya. Our immediate next steps include:"], ["ol", ["Final visual polishing of remaining secondary screens.", "One last round of accessibility and usability testing.", "Official market launch."]]]}], "close": "Because at the end of the day, no one should carry the weight of stress alone. Don’t forget, you are enough. You are Enow.", "coverImg": "/_blob/571db90943b271a47231394eaf34997c"}, "marktplaats": {"name": "Marktplaats", "title": "Marktplaats Reimagined: Crafting a Seamless Android Marketplace", "sub": "Taking a well-known app and improving its visual design and user experience.", "facts": [["App", "Marktplaats for Android"], ["Screens", "3 to 7 redesigned"], ["Timeline", "One week"], ["Team", "Completely solo project"]], "blocks": [{"lbl": "Brief", "h": "The Challenge & Constraints", "parts": [["p", "This project was created as a response to a specific design assignment with clear rules and limits. The goal was to take a well-known app and improve its visual design and user experience."], ["h4", "Assignment Rules"], ["ul", ["<b>App Choice:</b> Select a well-known native mobile app (Marktplaats for Android).", "<b>Screen Count:</b> Redesign between 3 and 7 screens.", "<b>UX Research:</b> Primary UX research (like user interviews or surveys) was not required. The focus is on interface analysis and UI design.", "<b>Recommended Screens:</b> Focus on important user steps, such as the Homepage, Results page, Product page, or Payment page."]], ["h4", "Project Scope & Timeline"], ["ul", ["<b>Timeline:</b> The entire design process, from analysis to high-fidelity prototyping, was executed within a tight deadline of <b>one week</b>.", "<b>Team Dynamic:</b> This was a <b>completely solo project</b>. All interface analysis, visual design, system components, and prototyping were handled independently."]]]}, {"lbl": "Overview", "h": "Project Overview & Introduction", "parts": [["img", ["/_blob/6dcf06be9cefd440d6a4789004908855", "Marktplaats app redesign: three redesigned screens"]], ["p", "<b>Marktplaats</b> is the most popular marketplace platform in the Netherlands. It covers absolutely everything: from secondhand clothes and furniture to cars, pets, art pieces, event tickets, housing, local services, and even job postings. It is an incredibly valuable tool for anyone living in the Netherlands, especially for expats moving in and furnishing a home from scratch, as the platform features a dedicated section for free items (“gratis”)."], ["p", "Despite its high utility, the current app suffers from an outdated design, language barriers, and navigation flaws. This project focuses on solving key user pain points through a structured, end-to-end UX/UI process."]]}, {"lbl": "Problems", "h": "The Problem & Challenges", "parts": [["p", "Three main issues were identified during the initial research phase:"], ["ul", ["<b>Language Barrier & Localization:</b> The app is primarily tailored only to Dutch speakers, creating a massive barrier for expats and foreigners who need it the most.", "<b>Poor Search in “Neighborhood” Section (In je buurt):</b> Users can view a map and nearby ads, but they cannot search or filter those local ads by specific categories.", "<b>Technical Instability:</b> Users frequently encounter freezing and app crashes during the checkout and payment process."]]]}, {"lbl": "Analysis", "h": "Heuristic Evaluation", "parts": [["p", "The process began with a thorough Heuristic Evaluation based on Jakob Nielsen’s principles to locate exact friction points in the current user experience."], ["img", ["/_blob/2902b7aab0edaa659a66297de9e28d28", "Heuristic evaluation board based on Nielsen’s 10 heuristics"]]]}, {"lbl": "Analysis", "h": "Deconstruction through UI Cloning", "parts": [["p", "Following the theoretical evaluation, we moved into a hands-on deconstruction phase. We meticulously cloned the existing screenshots of the app. This step was crucial to understand exactly how the original pages were built, how the components were structured, their spacing, and the overall information architecture before introducing any design changes."], ["img", ["/_blob/080f506946c9ba6be0cefaec75e28538", "Original screenshots next to my pixel-perfect clones"]]]}, {"lbl": "Analysis", "h": "Competitive Analysis", "parts": [["p", "To explore how successful global and local platforms solve similar challenges, a Visual Comparative Analysis was conducted with direct and indirect competitors: Vinted, eBay, Wallapop, and Temu. The focus was on their visual language, category structure, and checkout flow simplicity."], ["img", ["/_blob/5bdf850b0703d51eeabea00669807864", "Visual comparison of Vinted, eBay, Wallapop and Temu"]]]}, {"lbl": "Visual design", "h": "Moodboard", "parts": [["img", ["/_blob/7ee2e77a00e1c20069e79ef519bf24df", "Moodboard: my version, the AI version and the combination"]], ["p", "The visual identity was built using an iterative design workflow. The initial version of the Moodboard and brand attributes was created manually. Then, an AI generator was consulted to explore alternative concepts. The final direction represents a hybrid solution — combining human creativity and AI suggestions while keeping the recognizable warm orange brand color within a cleaner, more modern aesthetic."]]}, {"lbl": "Visual design", "h": "Style Tile", "parts": [["p", "All design assets were then consolidated into a comprehensive Style Tile. This guide establishes the typography, two logo variations used in the app, a color palette with HEX codes, button states, and a functional toolbar."], ["img", ["/_blob/bada019e5b582781f2308bd7fc6d103f", "Marktplaats style tile: logo, typography, colors, buttons", "narrow-wide"]]]}, {"lbl": "Design system", "h": "Atomic Design Methodology and System Growth Across 5 Stages", "parts": [["p", "To ensure interface scalability, consistency, and modularity, the Atomic Design methodology was applied. Through this framework, we explored how complex user interfaces grow systematically from the smallest components across five distinct stages:"], ["ul", ["<b>Atoms:</b> The basic, indivisible building blocks of the interface (e.g., individual icons, typography styles, color swatches, and raw input fields).", "<b>Molecules:</b> Combinations of atoms bonded together to form a functional unit (e.g., a search bar combining an input field, a magnifying glass icon, and placeholder text).", "<b>Templates:</b> Page-level content structures that showcase the layout and component hierarchy without displaying final, real data or specific imagery.", "<b>Pages:</b> The final stage where templates come to life with real content, actual copy, and product photos, demonstrating exactly how the app looks from the user’s perspective."]], ["img", ["/_blob/89f919d4100704e6a1f3cd3b7eade2c3", "Atomic design: from empty template to the finished page"]]]}, {"lbl": "Solutions", "h": "UX/UI Solutions (Before & After)", "parts": [["h4", "Solution 1: Enhancing the “Neighborhood” Feature"], ["ul", ["<b>Problem:</b> The previous version showed a map and nearby listings but lacked filtering capabilities.", "<b>Solution (Flexibility and Efficiency of Use):</b> A search bar and a specific category selector were integrated directly into the “In Your Neighborhood” view. Users can now quickly filter and find exactly what they need locally."]], ["img", ["/_blob/c875e6ca45ef55c916ba5161a01f5291", "Neighborhood feature before and after"]], ["h4", "Solution 2: Adding an Item Flow"], ["ul", ["<b>Problem:</b> The original flow suffered from language inconsistency (mixing Dutch and English) and failed to provide clear user feedback on form errors.", "<b>Solution (Match Between System & Real World):</b> The interface was fully localized and streamlined. An AI-powered helper was introduced to automatically generate descriptions and details based on the uploaded photo. Clear, visible error notifications for typing mistakes or empty required fields were added to reduce user friction."]], ["img", ["/_blob/72498b006785103408303dfdc8323766", "Adding an item before and after", "narrow"]], ["h4", "Solution 3: Payment Screen"], ["ul", ["<b>Problem:</b> Users reported frustrating technical lags and crashes during checkout on the old interface.", "<b>Solution (Consistency and Standards):</b> While backend bugs cannot be fixed by design alone, the UI layout was simplified and standardized to reduce cognitive load. The new layout aligns with modern e-commerce standards, showing a clear product thumbnail, better payment method segmentation, and a prominent orange “Pay” button to ensure a transparent user flow."]], ["img", ["/_blob/4b4a00c9a5c3059726135027f9669bb3", "Payment screen before and after", "narrow-wide"]]]}, {"lbl": "Prototype", "h": "Interactive Prototype", "parts": [["p", "To bring the redesigned screens to life, I connected them into a high-fidelity interactive prototype. This prototype simulates the real user journey on an Android device, showing how a user smoothly moves from exploring their local neighborhood to listing an item and finishing a secure purchase."], ["img", ["/_blob/142c45273e4c7118dd1ca15254a9eaa9", "Redesigned Marktplaats homepage on Android", "phone"]], ["flows", [["Try the interactive prototype", "Figma prototype", "https://www.figma.com/proto/i4j1FCmlgmG185kRkhMUMP/Iva-Pupavac---Marktplaats?node-id=13451-844&p=f&viewport=661%2C536%2C0.15&scaling=scale-down&content-scaling=fixed&starting-point-node-id=13451%3A844&show-proto-sidebar=1&page-id=116%3A21"]]]]}, {"lbl": "Conclusion", "h": "Conclusion", "parts": [["p", "This redesign successfully addresses the core pain points of Marktplaats app users. By introducing neighborhood category filters, deconstructing layouts through screenshot cloning, implementing a scalable Atomic Design system, and breaking down language barriers with clear error validation, the app becomes significantly more accessible, flexible, and delightful — both for Dutch locals and the growing expat community."]]}], "close": "More accessible, flexible, and delightful — both for Dutch locals and the growing expat community."}, "viviana": {"name": "Viviana Bridal", "title": "Messy digital navigation and chaotic admin mornings", "sub": "Designing a digital platform and a premium visual identity to elevate the online presence for a destination bridal makeup artist.", "facts": [["Role", "UX/UI Designers (Team: Iulia Pol, Micaela & Iva)"], ["Client", "Viviana Bridal (Italy-based destination wedding makeup business)"], ["Timeline", "4 Weeks"], ["Key Deliverables", "Responsive Website, Brand Identity, High-Fidelity Prototype"]], "blocks": [{"lbl": "Overview", "parts": [["p", "Premium service providers often face a major problem: while they offer a high-end, luxury experience in person, their website looks cheap, messy, or outdated."], ["p", "Viviane Tartaglia is an elite makeup artist specializing in exclusive destination weddings. However, her old website did not match the incredible quality of her work. The original site suffered from very poor text contrast, confusing navigation, and multiple CTA buttons that pointed to the exact same place. This confused users right at the most critical step—submitting an inquiry."], ["p", "<b>Project Goal:</b> Design a responsive website that organizes information clearly. The site must justify her premium pricing, build deep customer trust, and make the booking inquiry process easy for both the brides and Viviane."]]}, {"lbl": "Competitive analysis", "parts": [["p", "We evaluated three direct competitors in the market (Jessica Hawkins, Kellsie Bain, and Audrey Bourke). This research revealed three major gaps that Viviane could exploit to stand out:"], ["ul", ["<b>The Trust Gap:</b> Competitors rely almost entirely on Instagram, leaving their websites basic and empty. This is a great opportunity to make the website the primary tool for building real trust.", "<b>The Content Gap:</b> No competitor offers educational content or guides to help brides prepare their skin months before the wedding day.", "<b>The Positioning Gap:</b> The word \"luxury\" is used by everyone in a generic way, without showing concrete proof of what makes their service truly premium."]], ["img", ["/_blob/81b7017a21d25f7915acc55b450156bb", "Competitor comparison: Kellsie Bain, Jessica Hawkins, Audrey Bourke"]]]}, {"lbl": "Research", "parts": [["p", "Through an in-depth interview with Viviane, we defined the core values that her new website must project:"], ["q", ["I am selling a complete experience, not just makeup.", "Everything should feel elegant—from the premium products in my kit to the final packaging.", "My main goal on a wedding morning is to bring a calm, relaxing, and stress-free energy."]], ["p", "To avoid guessing and design for real human needs, we interviewed women who recently planned or had a wedding (including users like Ema, Sanja, Rada and Jovana). Using an Affinity Diagram, we discovered 4 key insights supported by real user quotes. These insights directly shaped the structure of the website:"]]}, {"lbl": "User persona", "h": "User persona", "parts": [["p", "Based on our research data, we created our primary persona: Elizabeth (32), an architect from London planning a destination wedding on the Amalfi Coast, Italy. She values efficiency and professionalism above all, preferring a vendor who clearly showcases their high-end product brands and organized workflow online rather than relying solely on abstract marketing words."], ["p", "Her main pain points are: stress over hidden pricing, a chaotic wedding morning, and the fear of looking unrecognizable under heavy, over-filtered makeup."], ["img", ["/_blob/d31292263165b6d009607038b6b3e1a4", "Primary persona: Elizabeth, 32, architect from London"]]]}, {"lbl": "Journey map", "h": "Journey Map", "parts": [["p", "By tracking her steps through a User Journey Map, we identified critical moments of frustration (stress over hidden pricing and lack of timeline info) and turned them into design opportunities on our new website."], ["img", ["/_blob/6acd9e59795ab82e98d6522cbfd4af73", "Elizabeth’s journey map from engagement to the wedding day"]], ["p", "<b>Problem Statement:</b> Brides seeking a premium destination makeup experience need an authentic and transparent way to trust an artist online, because they cannot trust heavily filtered, over-photoshopped images on social media."], ["p", "To solve this problem, we established key HMW challenges:"], ["ul", ["<b>How might we</b> help users feel transparency and a luxury vibe immediately in the hero section?", "<b>How might we</b> design an easy inquiry process that saves Viviane time while providing an instant, premium experience for the bride?", "<b>How might we</b> add a skin preparation guide to position the makeup artist as an expert mentor months before the wedding?"]]]}, {"lbl": "Prioritization", "h": "MoSCoW", "parts": [["p", "Some decisions required balancing user requests with brand exclusivity:"], ["ul", ["<b>Must Have:</b> Presentation of the touch-up kit, a visual morning timeline, high text contrast, and exclusively authentic photography.", "<b>Won't Have (Strategic UX Decision):</b> Interactive \"Before/After\" sliders. Even though some users expressed interest in this, we decided to exclude them. Sharp, aggressive before/after sliders often ruin the elegant, editorial look of a luxury brand. Instead, we created the \"Real Brides\" section—rich photo galleries showcasing real brides in their natural environment. We also excluded a real-time calendar to preserve an exclusive, high-touch consultative booking process."]], ["img", ["/_blob/758c406bf9384791da16582c498e3d9c", "MoSCoW prioritization board"]]]}, {"lbl": "Information architecture", "h": "Sitemap", "parts": [["p", "The website structure is divided into clean, intuitive sections that guide the user organically from inspiration to conversion:"], ["img", ["/_blob/7cae81eb63afcb0a681359e330287c2c", "Website sitemap"]]]}, {"lbl": "Information architecture", "h": "User Flow", "parts": [["p", "Next, we mapped out the precise micro-actions of the user through a User Flow diagram from landing on the homepage to successfully submitting the inquiry form."], ["img", ["/_blob/2d93ccaa5912f489790a5376868f1f5c", "User flow from homepage to submitted inquiry"]], ["p", "We started with basic <b>Low-Fidelity</b> sketches to quickly test layouts and structural ideas. We then developed a <b>Mid-Fidelity</b> prototype. During user testing with 5 participants, we discovered two major usability problems:"], ["ol", ["<b>Cramped Footer:</b> Users felt overwhelmed at the bottom of the page because too many links were crowded together without structure.", "<b>Confusing Navigation:</b> The \"Back\" icon looked too much like a hamburger menu icon, causing users to think they were opening a menu instead of going back to the previous page."]], ["h4", "Low-Fidelity"], ["img", ["/_blob/fad37ae8b8b815986019f69a8c713603", "Low-fidelity wireframes"]], ["h4", "Mid-Fidelity"], ["img", ["/_blob/1eaddebd8f10f962fda15c8cc3e3c7e5", "Mid-fidelity wireframes"]]]}, {"lbl": "Solution", "h": "High-Fidelity", "parts": [["p", "<b>The High-Fidelity Solution:</b> We cleaned up the footer, organized the links into clear vertical columns, and used a dark, high-contrast coffee-colored background to clearly separate the page's end. We also replaced the confusing back icon with a clear text-and-arrow link that is intuitive for mobile users."], ["img", ["/_blob/a7d99faab0287b8aeb742992e6772cf6", "High-fidelity pages of the new website"]]]}, {"lbl": "Visual design", "h": "Moodboard", "parts": [["p", "The visual strategy is inspired by the \"editorial\" design of elite fashion and bridal magazines (like Vogue and Sheerluxe). The goal was to blend the soft romance of a wedding with high-fashion prestige."], ["img", ["/_blob/037f804093fdf8f7818f7805be82bedc", "Editorial moodboard inspired by bridal magazines"]]]}, {"lbl": "Visual design", "h": "Style Tile", "parts": [["p", "Through a Style Tile, we translated the moodboard emotions into concrete UI components:"], ["p", "<b>Typography:</b> We chose an elegant, high-contrast Serif font for main headers to immediately signal luxury. For subheaders and body copy, we used a highly readable, clean geometric Sans-Serif font."], ["p", "<b>Color Palette:</b>"], ["sw", [["#F7F4EF", "Neutral Light"], ["#CEAE6E", "Champagne Gold"], ["#3C2B22", "Dark Coffee"], ["#9C8A7E", "Warm Taupe"]]], ["ul", ["<b>Neutral Light (#F7F4EF):</b> The dominant canvas color that gives the website \"room to breathe.\"", "<b>Champagne Gold (#CEAE6E):</b> Used as an accent color for primary elements and subtle elegant details.", "<b>Dark Coffee (#3C2B22):</b> A rich, dark tone used for maximum text legibility and premium contrast elements like the footer and primary buttons.", "<b>Warm Taupe (#9C8A7E):</b> A secondary supporting color for cards and secondary info containers."]], ["p", "<b>UI Components:</b> Sophisticated slightly rounded pill shapes and clean, sharp rectangular buttons with high contrast for primary CTA actions."], ["img", ["/_blob/581f2d8eb55013fe2fcf8e31c3cb413b", "Viviana Tartaglia style tile"]]]}, {"lbl": "Responsive", "h": "Responsive Design", "parts": [["p", "While mobile optimization is crucial for brides browsing on the go, the desktop experience serves as the ultimate visual showcase for Viviane’s elite portfolio. On a computer screen, the editorial grid layout expands fully, allowing high-resolution, unfiltered imagery to deliver maximum emotional impact and a true luxury vibe."], ["p", "To bridge these viewports, we built a fluid responsive grid. The sophisticated layout, typographic scale, and spacing effortlessly collapse from a multi-column desktop showcase into a seamless, thumb-friendly single-column layout for mobile and tablet screens, ensuring a premium experience no matter what device Elizabeth uses."], ["img", ["/_blob/c6124284e38605f4e9b87872df16dbf0", "Homepage: Refined Beauty for the Modern Bride", "dev"]], ["flows", [["View the prototype", "Figma prototype", "https://www.figma.com/proto/fGAA0Gw7Freu1frsoU1JBj/P2-G4-E-Commerce-%7C-Iulia-Pol--Iva--Micaela?node-id=13272-6230&viewport=-1315%2C-365%2C0.06&scaling=scale-down&content-scaling=fixed&starting-point-node-id=13272%3A6230&page-id=801%3A8072"]]]]}, {"lbl": "Conclusion", "h": "Conclusions & Key Learnings", "parts": [["p", "This project proved that premium digital design requires diving deep into consumer psychology rather than just creating pretty layouts. The success of this redesign lies in translating the real anxieties of destination brides (like Iva and Micaela) into clear solutions on the website:"], ["ol", ["We minimized the fear of looking unrecognizable through authentic portfolio photography.", "We justified the high price point by clearly showcasing premium brands.", "We removed morning anxiety by introducing a visual timeline and an exclusive touch-up kit description."]], ["p", "The final result is a beautiful, highly responsive digital platform that completely reflects the premium prestige, trust, and luxury experience of working with Viviane Tartaglia."]]}], "close": "Premium prestige, trust, and the luxury experience of working with Viviane Tartaglia."}, "psy": {"name": "Therapy website", "title": "A calmer way into therapy", "sub": "A mobile-first website for a psychologist in the Netherlands, written for two audiences: people looking for help, and the GPs who refer them.", "facts": [["Role", "UX/UI Designers (Team: Tereza & Iva)"], ["Client", "Psychologist practice, the Netherlands"], ["Status", "In progress · mid-fidelity"], ["Deliverables", "Responsive website, component library"]], "blocks": [{"lbl": "Status", "h": "Work in progress", "parts": [["p", "This is our final project at Ironhack and it is still on the table. What follows is where the design stands today, not a finished story."]]}, {"lbl": "Prices & insurance", "h": "Making Dutch healthcare costs readable", "parts": [["p", "Insurance and pricing are where people get lost. The prices page breaks it down so nobody has to decode it alone:"], ["ul", ["<b>Insurance carousel:</b> swipeable insurance cards, built as reusable components.", "<b>Rate overview:</b> treatment, diagnostics and other rates as pill tabs with rate cards, the most common option highlighted.", "<b>Dropdowns that breathe:</b> content expands to its full length instead of being cut off."]]]}, {"lbl": "For referring clinicians", "h": "A shorter page for busy GPs", "parts": [["p", "Doctors who refer patients need answers fast. We cut this page down to what they actually use:"], ["ul", ["Accordion cards with swappable content", "A notice block, quick actions and a consult card", "A call button that shows a ringing phone and a “Calling…” state on tap"]]]}, {"lbl": "Next", "h": "What comes next", "parts": [["ol", ["Finish the remaining mid-fidelity screens.", "Test with clients and with GPs.", "Move to high fidelity and build the prototype."]]]}], "close": "Therapy is hard enough. Finding it should not be."}};
+  const ORDER=['enow','marktplaats','viviana','psy'];
+  const dlg=document.getElementById('cs');
+  const arrow='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>';
+  function blockHTML(b){
+    let h=`<section class="cs-sec"><span class="mono lbl">${b.lbl}</span>`+(b.h?`<h3>${b.h}</h3>`:'');
+    (b.parts||[]).forEach(([t,v])=>{
+      if(t==='p') h+=`<p>${v}</p>`;
+      else if(t==='h4') h+=`<h4 class="cs-h4">${v}</h4>`;
+      else if(t==='ul') h+=`<ul>${v.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+      else if(t==='ol') h+=`<ol>${v.map(l=>`<li>${l}</li>`).join('')}</ol>`;
+      else if(t==='q') h+=`<div class="cs-quotes">${v.map(q=>`<q>${q}</q>`).join('')}</div>`;
+      else if(t==='stats') h+=`<div class="cs-stats">${v.map(s=>`<div><strong>${s[0]}</strong>${s[1]}</div>`).join('')}</div>`;
+      else if(t==='sw') h+=`<div class="cs-swatches">${v.map(s=>`<div><i style="background:${s[0]}"></i>${s[0]} · ${s[1]}</div>`).join('')}</div>`;
+      else if(t==='flows') h+=`<div class="cs-flows">${v.map(f=>`<a href="${f[2]}" target="_blank" rel="noopener"><span>${f[0]}<small>${f[1]}</small></span>${arrow}</a>`).join('')}</div>`;
+      else if(t==='chips') h+=`<div class="meta">${v.map(c=>`<span class="chip hot" style="font-size:13px;padding:7px 14px">${c}</span>`).join('')}</div>`;
+      else if(t==='img') h+=`<img class="cs-img${v[2]?' '+v[2]:''}" src="${v[0]}" alt="${v[1]}" loading="lazy">`;
+      else if(t==='gallery') h+=`<div class="cs-gal">${v.map(g=>`<img class="cs-img" src="${g[0]}" alt="${g[1]}" loading="lazy">`).join('')}</div>`;
+      else if(t==='scatter') h+=`<div class="cs-scatter">${v.map(g=>`<figure><img class="cs-img" src="${g[0]}" alt="${g[1]}" loading="lazy"></figure>`).join('')}</div>`;
+      else if(t==='devices') h+=`<div class="cs-devices">${v.map(g=>`<img class="cs-img" src="${g[0]}" alt="${g[1]}" loading="lazy">`).join('')}</div>`;
+      else if(t==='stack') h+=v.map(g=>`<img class="cs-img" src="${g[0]}" alt="${g[1]}" loading="lazy">`).join('');
+      else if(t==='phones') h+=`<div class="cs-phones">${v.map(g=>`<img class="cs-img" src="${g[0]}" alt="${g[1]}" loading="lazy">`).join('')}</div>`;
+      else if(t==='slot') h+=`<div class="cs-slot"><div><b>Image: ${v}</b><span class="mono">Drop your Figma export here</span></div></div>`;
+    });
+    return h+'</section>';
+  }
+  function openCase(key){
+    const c=CASES[key]; if(!c) return;
+    const i=ORDER.indexOf(key), next=ORDER[(i+1)%ORDER.length], prev=ORDER[(i+ORDER.length-1)%ORDER.length];
+    const cover=document.querySelector(`.works .cover[data-case="${key}"]`).cloneNode(true);
+    cover.removeAttribute('tabindex'); cover.removeAttribute('role'); cover.setAttribute('aria-hidden','true');
+    dlg.innerHTML=`<div class="cs-bar"><span class="t mono">Case study · ${c.name}</span><button type="button" data-go="${prev}" aria-label="Previous case study">←</button><button type="button" data-go="${next}" aria-label="Next case study">→</button><button type="button" class="x" data-close>Close ✕</button></div>
+      <div class="cs-hero"></div>
+      <div class="cs-main">
+        <header><h2 id="csTitle">${c.title}</h2><p class="cs-sub">${c.sub}</p></header>
+        <div class="cs-facts">${c.facts.map(f=>`<div><span>${f[0]}</span>${f[1]}</div>`).join('')}</div>
+        ${c.blocks.map(blockHTML).join('')}
+        <div class="cs-close"><p>${c.close}</p><div class="cs-next"><button type="button" class="ghost" data-close>Back to all work</button><button type="button" data-go="${next}">Next: ${CASES[next].name} →</button></div></div>
+      </div>`;
+    dlg.querySelector('.cs-hero').appendChild(cover);
+    if(!dlg.open){ try{dlg.showModal()}catch(e){dlg.setAttribute('open','')} }
+    document.body.classList.add('locked');
+    dlg.scrollTop=0;
+    dlg.querySelector('.x').focus({preventScroll:true});
+  }
+  function closeCase(){ if(dlg.open) dlg.close(); }
+  dlg.addEventListener('close',()=>{document.body.classList.remove('locked'); dlg.innerHTML='';});
+  dlg.addEventListener('click',e=>{
+    const im=e.target.closest('.cs-img'); if(im){const lb=document.createElement('div');lb.className='lb';lb.innerHTML='<img alt="">';lb.firstChild.src=im.src;lb.firstChild.alt=im.alt;lb.addEventListener('click',()=>lb.remove());dlg.appendChild(lb);return}
+    if(e.target.closest('.lb')) return;
+    const go=e.target.closest('[data-go]'); if(go){openCase(go.dataset.go);return}
+    if(e.target.closest('[data-close]')) closeCase();
+  });
+  document.querySelectorAll('.works .cover[data-case]').forEach(cv=>{
+    const key=cv.dataset.case;
+    cv.setAttribute('role','button'); cv.setAttribute('tabindex','0');
+    cv.setAttribute('aria-label','Open the '+CASES[key].name+' case study');
+    cv.querySelectorAll('*').forEach(n=>n.setAttribute('aria-hidden','true'));
+    cv.addEventListener('click',()=>openCase(key));
+    cv.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCase(key)}});
+    cv.closest('.proj').querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openCase(key)));
+  });
+  
+})();
+</script>
+</body></html>
